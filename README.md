@@ -51,3 +51,13 @@ A justification
 -----------------
 
 TBD
+
+Usage
+------
+
+Given a successful installation of Ruby on local machine run through the following steps:
+
+- Checkout codez
+- `bundle install`
+- `ruby start.rb`
+- Open browser and point it to http://localhost:4567

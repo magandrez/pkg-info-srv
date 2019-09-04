@@ -1,8 +1,8 @@
 TODO
 ======
 
-  * [ ] Setup project
-  * [ ] Provide the base framework to respond to HTTP requests.
+  * [X] Setup project
+  * [X] Provide the base framework to respond to HTTP requests.
   * [ ] Read and parse the package list file.
     * [ ] Read the file.
     * [ ] Write model(s) to support the data.
