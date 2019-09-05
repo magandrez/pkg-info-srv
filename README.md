@@ -59,5 +59,5 @@ Given a successful installation of Ruby on local machine run through the followi
 
 - Checkout codez
 - `bundle install`
-- `ruby start.rb`
-- Open browser and point it to http://localhost:4567
+- `bundle exec rackup`
+- Open browser and point it to http://localhost:9292
