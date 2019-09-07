@@ -36,6 +36,8 @@ Addendum
 
 - The requirement of the solution being written in Typescript was deemed _a recommendation from the client_. If any other framework/approach is implemented, a justification ensues.
 
+- The service should listen to the file changes (i.e.: the file can be considered dynamic, thus the service needs to react to file changes and serve the updated information accordingly.
+
 A solution
 ------------
 
