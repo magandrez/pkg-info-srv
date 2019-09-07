@@ -28,7 +28,7 @@ class FileParser
   end
 
   def read_package(from_line, to_line)
-    rio(@file).lines(from_line, to_line)
+    rio(@file).lines[from_line...to_line]
   end
 
 end

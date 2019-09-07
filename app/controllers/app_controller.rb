@@ -10,9 +10,11 @@ class AppController < Sinatra::Base
   get '/api/packages/:package_name' do
     $fp.load_file_map
     arr = $fp.file_map
-    packages = arr.map{|a| a[0]}
-    if packages.include? params[:package_name]
-      'Yay!'
+    package_index = arr.select{ |package| package[0].include? params[:package_name] }.flatten
+    unless package_index.empty?
+      text = $fp.read_package(package_index[1], # Package start line in file
+                              arr[arr.index(package_index)+1][1]) # Package end line (the beginning of the next in the map)
+      text
     else
       halt 404, 'Package not found!'
     end
