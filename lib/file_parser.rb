@@ -11,7 +11,20 @@ class FileParser
   end
 
   def load_file_map
-    @file_map = File.open('status'){ |f| f.each_line.lazy.each_with_index.map { |line, i| [line, i] }.select{|line| line[0].match(/^Package: /)}.to_a.map!{|arr| [arr[0].gsub!("\n", "").gsub!("Package: ",""), arr[1]]}}
+    @file_map = File.open('status') do |file|
+      lazy_file = file.each_line.lazy.each_with_index.map do |line, i|
+        [line, i]
+      end
+      lazy_index = lazy_file.select do |line|
+        line[0].match(/^Package: /)
+      end
+      lazy_index.to_a.map! do |array|
+        [
+          array[0].gsub!("\n", "").gsub!("Package: ",""),
+          array[1]
+        ]
+      end
+    end
   end
 
   def read_package(from_line, to_line)
