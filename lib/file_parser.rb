@@ -47,8 +47,15 @@ class FileParser
   end
 
   def parse_description(text)
-    description = text.select{|item| item[0] == ' ' || item =~ /^Description/ }.map{|item| item.gsub(/^Description: /, '')}
-    description.join("\n")
+    desc_index = 0
+    text.select.each_with_index do |item, i|
+      desc_index = i if item =~ /^Description:/
+    end
+    desc = text[desc_index..text.length].select do |item|
+      item =~ /^Description/ || item[0] == ' '
+    end
+    desc.map!{ |item| item.gsub(/^Description: /, '')}
+    desc.join
   end
 
   def parse_dependencies(text)
