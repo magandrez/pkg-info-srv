@@ -39,7 +39,7 @@ class FileParser
     result[:name] = parse_name(text)
     result[:description] = parse_description(text)
     result[:depends_on] = parse_dependencies(text)
-    result.to_json
+    result
   end
 
   def parse_name(text)
@@ -62,12 +62,10 @@ class FileParser
     dep = []
     dep = text.select{ |line| /^Depends/ =~ line }.first
     return [] if dep.nil?
-    dep.gsub!("Depends: ", "")
-    dep.gsub!(/\(.*?\)/, '').# Removes all versioning -- between parentheses
-      split(","). # Splits string into array of strings by comma
-      map! do |elem|
-        elem.split("|")[0].strip # Splits by | and takes the first part (i.e. orig dep vs alternative)
-      end.uniq # Don't repeat deps
+    arr_dep = dep.gsub("Depends: ", "").gsub(/\(.*?\)/, '').split(",") # Cleanup and split to array
+    arr_dep.map! do |elem|
+      elem.split("|")[0].strip # Splits by | and takes the first part (i.e. orig dep vs alternative)
+    end.uniq # Don't repeat deps
   end
 
 end

@@ -13,9 +13,15 @@ class AppController < Sinatra::Base
     package_index = arr.select{ |package| package[0] == params[:package_name] }.flatten
     unless package_index.empty?
       content_type :json
-      # TODO: make the below call safe for EOF errors
-      info_hash = $fp.parse_text(package_index[1], # Package start line in file
-                                 arr[arr.index(package_index)+1][1]) # Package end line (the beginning of the next in the map)
+      read_from = package_index[1] # Package start line in file
+      begin
+        read_to = arr[arr.index(package_index)+1][1]
+      rescue
+        # Trying to access arr out of bounds, read until the end.
+        read_to = File.foreach('status').inject(0) { |c, line| c+1 }
+      end
+      result = $fp.parse_text(read_from, read_to)
+      result.to_json
     else
       halt 404, 'Package not found!'
     end
