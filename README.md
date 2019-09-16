@@ -63,3 +63,8 @@ Given a successful installation of Ruby on local machine run through the followi
 - `bundle install`
 - `bundle exec rackup`
 - Open browser and point it to http://localhost:9292
+
+Bugs
+-----
+
+See [KNOWN_BUGS](KNOWN_BUGS).
