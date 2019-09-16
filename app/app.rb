@@ -1,6 +1,8 @@
+require 'sinatra/base'
 require 'json'
 
-class AppController < Sinatra::Base
+class App < Sinatra::Base
+  set :show_exceptions, false
 
   before do
     content_type :json
@@ -28,7 +30,7 @@ class AppController < Sinatra::Base
       result = $fp.parse_text(read_from, read_to)
       result.to_json
     else
-      halt 404, 'Package not found!'
+      halt 404, 'Package not found.'
     end
   end
 
