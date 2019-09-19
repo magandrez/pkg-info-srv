@@ -67,4 +67,4 @@ Given a successful installation of Ruby on local machine run through the followi
 Bugs
 -----
 
-See [KNOWN_BUGS](KNOWN_BUGS).
+See [KNOWN_BUGS](KNOWN_BUGS.md).
