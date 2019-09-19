@@ -64,6 +64,10 @@ Given a successful installation of Ruby on local machine run through the followi
 - `bundle exec rackup -p 8080`
 - Open browser and point it to http://localhost:8080
 
+Documentation
+-----
+Once the service is launched (see 'Usage'), hit http://localhost:8080/doc for code documentation generated with [YARD](https://yardoc.org).
+
 Bugs
 -----
 

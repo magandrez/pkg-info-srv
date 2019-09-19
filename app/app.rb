@@ -1,8 +1,10 @@
 require 'sinatra/base'
 require 'json'
 
+# Main class where routes for service are registered.
 class App < Sinatra::Base
   set :show_exceptions, false
+  set :public_folder, './doc'
 
   before do
     content_type :json
@@ -21,5 +23,10 @@ class App < Sinatra::Base
   get '/api/packages/' do
     result = FileParser.find
     result.to_json
+  end
+
+  get '/doc' do
+    content_type 'text/html'
+    send_file File.join(settings.public_folder, 'index.html')
   end
 end
