@@ -61,8 +61,8 @@ Given a successful installation of Ruby on local machine run through the followi
 
 - Checkout codez
 - `bundle install`
-- `bundle exec rackup`
-- Open browser and point it to http://localhost:9292
+- `bundle exec rackup -p 8080`
+- Open browser and point it to http://localhost:8080
 
 Bugs
 -----
