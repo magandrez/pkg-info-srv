@@ -6,5 +6,6 @@ source 'https://rubygems.org' do
   group :development do
     gem 'yard'
     gem 'pry'
+    gem 'rake'
   end
 end

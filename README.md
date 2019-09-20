@@ -60,12 +60,19 @@ Usage
 Given a successful installation of Ruby on local machine run through the following steps:
 
 - Checkout codez
-- `bundle install`
-- `bundle exec rackup -p 8080`
+- `$ bundle install`
+- `$ bundle exec rackup -p 8080`
 - Open browser and point it to http://localhost:8080
 
 Documentation
 -----
+Use `rake` to generate the documentation.
+
+```
+$ bundle exec rake -vT # To see available tasks
+$ bundle exec rake doc:yard # To re-generate documentation
+```
+
 Once the service is launched (see 'Usage'), hit http://localhost:8080/doc for code documentation generated with [YARD](https://yardoc.org).
 
 Bugs
