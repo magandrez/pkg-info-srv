@@ -1,12 +1,13 @@
-source 'https://rubygems.org' do
+# frozen_string_literal: true
 
-  gem 'sinatra'
+source 'https://rubygems.org' do
   gem 'rio'
+  gem 'sinatra'
 
   group :development do
-    gem 'yard'
     gem 'pry'
     gem 'rake'
     gem 'rubocop'
+    gem 'yard'
   end
 end

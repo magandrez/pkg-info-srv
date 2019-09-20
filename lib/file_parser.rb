@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rio'
 require 'json'
 
@@ -12,7 +14,6 @@ require 'json'
 #
 # For specifics on the information parser, see method documentation.
 module FileParser
-
   # Extracts information for a given package from a control file.
   # The information is read from a static file stored in the
   # service's folder structure.
@@ -24,15 +25,16 @@ module FileParser
   # @return [Hash<Symbol, String>] information parsed from control file
   #   for the package name requested.
   def self.get(package)
-    package_index = index.select{ |pkg| pkg[0] == package }.flatten
+    package_index = index.select { |pkg| pkg[0] == package }.flatten
     return [] if package_index.empty?
+
     read_from = package_index[1] # Package start line in file
     begin
       # Accessing arr might fall out of bounds this way
-      read_to = arr[arr.index(package_index)+1][1]
+      read_to = arr[arr.index(package_index) + 1][1]
     rescue StandardError
       # Read the file until the last line when arr out of bounds
-      read_to = File.foreach('status').inject(0) { |c, line| c+1 }
+      read_to = File.foreach('status').inject(0) { |c, _line| c + 1 }
     end
     parse_text(read_from, read_to)
   end
@@ -50,11 +52,12 @@ module FileParser
   #   in control file.
   def self.find
     all_indices = index.map(&:last)
-    all_indices.lazy.each_slice(2).map{ |item| parse_text(item[0], item[1]) }.to_a
+    all_indices.lazy.each_slice(2).map do |item|
+      parse_text(item[0], item[1])
+    end.to_a
   end
 
   class << self
-
     private
 
     # Generates an index with the lines where each of the packages
@@ -65,7 +68,7 @@ module FileParser
     # @return [ Array<String,Integer>) ] map containing package name and
     #   start line number of each package in the control file.
     def index
-      @@index ||= File.open('status') do |file|
+      @index ||= File.open('status') do |file|
         lazy_file = file.each_line.lazy.each_with_index.map do |line, i|
           [line, i]
         end
@@ -73,10 +76,8 @@ module FileParser
           line[0].match(/^Package: /)
         end
         lazy_index.to_a.map! do |array|
-          [
-            array[0].gsub!("\n", "").gsub!("Package: ",""),
-            array[1]
-          ]
+          [array[0].gsub!("\n", '').gsub!('Package: ', ''),
+           array[1]]
         end
       end
     end
@@ -94,7 +95,7 @@ module FileParser
     #    }
     def parse_text(from, to)
       text = read_file(from, to)
-      text.map!{ |str| str.delete!("\n") }
+      text.map! { |str| str.delete!("\n") }
       result = {}
       result[:name] = parse_name(text)
       result[:description] = parse_description(text)
@@ -108,7 +109,7 @@ module FileParser
     # @see https://www.debian.org/doc/debian-policy/ch-controlfields.html#package
     #   Package field in control file
     def parse_name(text)
-      text.select{ |line| /^Package/ =~ line }.first.gsub("Package: ", "")
+      text.select { |line| /^Package/ =~ line }.first.gsub('Package: ', '')
     end
 
     # Extracts package description from control file line.
@@ -124,7 +125,7 @@ module FileParser
       desc = text[desc_index..text.length].select do |item|
         item =~ /^Description/ || item[0] == ' '
       end
-      desc.map!{ |item| item.gsub(/^Description: /, '')}
+      desc.map! { |item| item.gsub(/^Description: /, '') }
       desc.join
     end
 
@@ -134,12 +135,14 @@ module FileParser
     # @see https://www.debian.org/doc/debian-policy/ch-controlfields.html#package-interrelationship-fields-depends-pre-depends-recommends-suggests-breaks-conflicts-provides-replaces-enhances
     #   Package interrelationship fields
     def parse_dependencies(text)
-      dep = []
-      dep = text.select{ |line| /^Depends/ =~ line }.first
+      dep = text.select { |line| /^Depends/ =~ line }.first
       return [] if dep.nil?
-      arr_dep = dep.gsub("Depends: ", "").gsub(/\(.*?\)/, '').split(",") # Cleanup and split to array
+
+      # Cleanup and split to array
+      arr_dep = dep.gsub('Depends: ', '').gsub(/\(.*?\)/, '').split(',')
       arr_dep.map! do |elem|
-        elem.split("|")[0].strip # Splits by | and takes the first part (i.e. orig dep vs alternative)
+        # Splits by | and takes the first part (i.e. orig dep vs alternative)
+        elem.split('|')[0].strip
       end.uniq # Don't repeat deps
     end
 
