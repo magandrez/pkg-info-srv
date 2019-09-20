@@ -43,7 +43,7 @@ A solution
 
 A solution for the given problem is to implement a REST service that listens for requests to the given endpoints (`/api/packages/` and `/api/packages/:package-name`) and provides the required response defined above in detail. The response payload is returned in JSON format.
 
-The service reads the given file that describes packages installed in GNU/Linux Debian/Ubuntu systems, interprets it and responds with the required information in JSON format. The responses will contain, along with the payload, a status code conforming the standard HTTP status codes commonly used in REST architecture (2xx success, 4xx client error, etc). The server will respond with a 404 status code to other endpoints other than the mentioned above.
+The service reads the given file that describes packages installed in GNU/Linux Debian/Ubuntu systems, interprets it and responds with the required information in JSON format. The responses will contain, along with the payload, a status code conforming the standard HTTP status codes commonly used in REST architecture (2xx success, 4xx client error, etc). The server will respond with a 404 status code to other endpoints other than the mentioned above aside from documentation-related endpoints listed in OpenApi definition in root URL.
 
 The service is to be implemented in Ruby using Sinatra.
 
@@ -54,7 +54,7 @@ A justification
 
 TBD
 
-Usage
+Development
 ------
 
 Given a successful installation of Ruby on local machine run through the following steps:
@@ -64,16 +64,25 @@ Given a successful installation of Ruby on local machine run through the followi
 - `$ bundle exec rackup -p 8080`
 - Open browser and point it to http://localhost:8080
 
+[Rake](https://github.com/ruby/rake) has been taken into use for automating
+some tasks (documentation, code analysis). For a list of automated tasks:
+
+```
+$ bundle exec rake -vT
+rake doc:yard              # Generate YARD Documentation
+rake rubocop               # Run RuboCop
+rake rubocop:auto_correct  # Auto-correct RuboCop offenses
+```
+
 Documentation
 -----
 Use `rake` to generate the documentation.
 
 ```
-$ bundle exec rake -vT # To see available tasks
 $ bundle exec rake doc:yard # To re-generate documentation
 ```
 
-Once the service is launched (see 'Usage'), hit http://localhost:8080/doc for code documentation generated with [YARD](https://yardoc.org).
+Once the service is up, hit http://localhost:8080/doc for code documentation generated with [YARD](https://yardoc.org).
 
 Bugs
 -----
