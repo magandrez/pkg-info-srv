@@ -33,7 +33,7 @@ module FileParser
       end_line = arr[arr.index(package_index) + 1][1]
     rescue StandardError
       # Read the file until the last line when arr out of bounds
-      end_line = last_line
+      end_line = line_num
     end
     parse_text(start_line, end_line)
   end
@@ -56,7 +56,7 @@ module FileParser
       res << parse_text(i, next_i)
     end
     res << parse_text(all_indices[all_indices.size - 1],
-                      last_line)
+                      line_num)
 
     res
   end
@@ -161,7 +161,7 @@ module FileParser
 
     # Gives the number of lines on a file
     # @return [Integer] lines in a file
-    def last_line
+    def line_num
       File.foreach('status').inject(0) { |c, _line| c + 1 }
     end
   end
