@@ -99,7 +99,7 @@ Some things to keep in mind:
 
 <p>A solution for the given problem is to implement a REST service that listens for requests to the given endpoints (<code>/api/packages/</code> and <code>/api/packages/:package-name</code>) and provides the required response defined above in detail. The response payload is returned in JSON format.</p>
 
-<p>The service reads the given file that describes packages installed in GNU/Linux Debian/Ubuntu systems, interprets it and responds with the required information in JSON format. The responses will contain, along with the payload, a status code conforming the standard HTTP status codes commonly used in REST architecture (2xx success, 4xx client error, etc). The server will respond with a 404 status code to other endpoints other than the mentioned above.</p>
+<p>The service reads the given file that describes packages installed in GNU/Linux Debian/Ubuntu systems, interprets it and responds with the required information in JSON format. The responses will contain, along with the payload, a status code conforming the standard HTTP status codes commonly used in REST architecture (2xx success, 4xx client error, etc). The server will respond with a 404 status code to other endpoints other than the mentioned above aside from documentation-related endpoints listed in OpenApi definition in root URL.</p>
 
 <p>The service is to be implemented in Ruby using Sinatra.</p>
 
@@ -115,16 +115,34 @@ Some things to keep in mind:
 <ul><li>
 <p>Checkout codez</p>
 </li><li>
-<p><code>bundle install</code></p>
+<p><code>$ bundle install</code></p>
 </li><li>
-<p><code>bundle exec rackup -p 8080</code></p>
+<p><code>$ bundle exec rackup -p 8080</code></p>
 </li><li>
 <p>Open browser and point it to <a href="http://localhost:8080">localhost:8080</a></p>
 </li></ul>
 
+<p>or with Docker (upon request)</p>
+
+<pre class="code ruby"><code class="ruby">$ docker run -it -p 8080:8080 spavi/pkg-info-srv:latest
+</code></pre>
+
+<p><a href="https://github.com/ruby/rake">Rake</a> has been taken into use for automating some tasks (documentation, code analysis). For a list of automated tasks:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec rake -vT
+rake doc:yard              # Generate YARD Documentation
+rake rubocop               # Run RuboCop
+rake rubocop:auto_correct  # Auto-correct RuboCop offenses
+</code></pre>
+
 <h2 id="label-Documentation">Documentation</h2>
 
-<p>Once the service is launched (see &#39;Usage&#39;), hit <a href="http://localhost:8080/doc">localhost:8080/doc</a> for code documentation generated with <a href="https://yardoc.org">YARD</a>.</p>
+<p>Use <code>rake</code> to generate the documentation.</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec rake doc:yard # To re-generate documentation
+</code></pre>
+
+<p>Once the service is up, hit <a href="http://localhost:8080/doc">localhost:8080/doc</a> for code documentation generated with <a href="https://yardoc.org">YARD</a>.</p>
 
 <h2 id="label-Bugs">Bugs</h2>
 
@@ -132,7 +150,7 @@ Some things to keep in mind:
 </div></div>
 
       <div id="footer">
-  Generated on Fri Sep 20 18:21:20 2019 by
+  Generated on Sat Sep 21 13:15:35 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

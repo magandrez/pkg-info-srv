@@ -28,15 +28,15 @@ module FileParser
     package_index = index.select { |pkg| pkg[0] == package }.flatten
     return [] if package_index.empty?
 
-    read_from = package_index[1] # Package start line in file
+    start_line = package_index[1] # Package start line in file
     begin
       # Accessing arr might fall out of bounds this way
-      read_to = arr[arr.index(package_index) + 1][1]
+      end_line = arr[arr.index(package_index) + 1][1]
     rescue StandardError
       # Read the file until the last line when arr out of bounds
-      read_to = File.foreach('status').inject(0) { |c, _line| c + 1 }
+      end_line = last_line
     end
-    parse_text(read_from, read_to)
+    parse_text(start_line, end_line)
   end
 
   # Extracts information for all packages from a control
@@ -52,9 +52,14 @@ module FileParser
   #   in control file.
   def self.find
     all_indices = index.map(&:last)
-    all_indices.lazy.each_slice(2).map do |item|
-      parse_text(item[0], item[1])
-    end.to_a
+    res = []
+    all_indices.each_cons(2) do |i, next_i|
+      res << parse_text(i, next_i)
+    end
+    res << parse_text(all_indices[all_indices.size - 1],
+                      last_line)
+
+    res
   end
 
   class << self
@@ -153,6 +158,12 @@ module FileParser
     #   line by line.
     def read_file(from_line, to_line)
       rio('status').lines[from_line...to_line]
+    end
+
+    # Gives the number of lines on a file
+    # @return [Integer] lines in a file
+    def last_line
+      File.foreach('status').inject(0) { |c, _line| c + 1 }
     end
   end
 end
