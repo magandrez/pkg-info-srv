@@ -9,5 +9,6 @@ source 'https://rubygems.org' do
     gem 'rake', '~> 12'
     gem 'rubocop'
     gem 'yard', '~> 0.9'
+    gem 'rspec', '~> 3.0'
   end
 end
