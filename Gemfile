@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org' do
-  gem 'rio', '~> 0.6'
   gem 'sinatra', '~> 2.0'
 
   group :development do

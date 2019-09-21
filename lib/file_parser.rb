@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rio'
 require 'json'
 
 # Namespace for functionality that handles file parsing.
@@ -157,7 +156,7 @@ module FileParser
     # @return [Array<String>] containing package information
     #   line by line.
     def read_file(from_line, to_line)
-      rio('status').lines[from_line...to_line]
+      File.readlines('status').to_a[from_line...to_line]
     end
 
     # Gives the number of lines on a file
