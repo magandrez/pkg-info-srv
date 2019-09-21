@@ -7,7 +7,7 @@ TODO
     * [X] Read the file to an internal format.
     * [X] Provide search for one package. (i.e.: /api/packages/:package-name)
     * [X] Implement list all packages (i.e.: /api/packages)
-  * [ ] Implement dynamic reloading of source data
+  * [X] Implement dynamic reloading of source data
   * [ ] Provide a description of the service (i.e. Swagger doc). -- OPT.
   * [ ] Test coverage -- OPT.
   * [ ] Write justification for the choices made.
