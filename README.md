@@ -54,7 +54,7 @@ A justification
 
 TBD
 
-Development
+Usage
 ------
 
 Given a successful installation of Ruby on local machine run through the following steps:
@@ -63,6 +63,13 @@ Given a successful installation of Ruby on local machine run through the followi
 - `$ bundle install`
 - `$ bundle exec rackup -p 8080`
 - Open browser and point it to http://localhost:8080
+
+or with Docker (upon request)
+
+```
+$ docker run -it -p 8080:8080 spavi/pkg-info-srv:latest
+```
+
 
 [Rake](https://github.com/ruby/rake) has been taken into use for automating
 some tasks (documentation, code analysis). For a list of automated tasks:
