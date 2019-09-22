@@ -89,7 +89,11 @@ Use `rake` to generate the documentation.
 $ bundle exec rake doc:yard # To re-generate documentation
 ```
 
-Once the service is up, hit http://localhost:8080/doc for code documentation generated with [YARD](https://yardoc.org).
+Documentation is generated to ./doc folder. You can mount it using Docker and [ecstatic](https://github.com/magandrez/ecstatic):
+
+```
+docker run -d --name docserver -p 80:80 -v ~/Documents/workbench/pkg-info-srv/doc:/var/html/www magandrez/ecstatic
+```
 
 Bugs
 -----
