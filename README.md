@@ -1,10 +1,9 @@
-pkg-info-srv
-=================
+# pkg-info-srv
+
 
 pkg-info-srv is a Proof Of Concept for a service that would provide information on GNU/Linux packages.
 
-The problem
--------------
+## The problem
 
 The initial requirements are pasted verbatim below
 
@@ -31,15 +30,13 @@ Some things to keep in mind:
 - Please avoid making your submission available to potential third parties by posting it to a public repository. Using a private repository is fine, or alternatively you can submit a zip file of the repository.
 ```
 
-Addendum
----------
+### Addendum
 
 - The requirement of the solution being written in Typescript was deemed _a recommendation from the client_. If any other framework/approach is implemented, a justification ensues.
 
 - The service should listen to the file changes (i.e.: the file can be considered dynamic, thus the service needs to react to file changes and serve the updated information accordingly.
 
-A solution
-------------
+## A solution
 
 A solution for the given problem is to implement a REST service that listens for requests to the given endpoints (`/api/packages/` and `/api/packages/:package-name`) and provides the required response defined above in detail. The response payload is returned in JSON format.
 
@@ -49,13 +46,13 @@ The service is to be implemented in Ruby using Sinatra.
 
 For more information, refer to the TODO.
 
-A justification
------------------
+## A justification
+
 
 TBD
 
-Usage
-------
+## Usage
+
 
 Given a successful installation of Ruby on local machine run through the following steps:
 
@@ -70,8 +67,10 @@ or with Docker (upon request)
 $ docker run -it -p 8080:8080 spavi/pkg-info-srv:latest
 ```
 
+## Development
+
 [Rake](https://github.com/ruby/rake) has been taken into use for automating
-some tasks (documentation, code analysis). For a list of automated tasks:
+some tasks (documentation, code analysis, etc). For a list of automated tasks:
 
 ```
 $ bundle exec rake -vT
@@ -91,18 +90,16 @@ Use `rake` to generate the documentation.
 $ bundle exec rake doc:yard # To re-generate documentation
 ```
 
-Documentation is generated to ./doc folder. You can mount it using Docker and [ecstatic](https://github.com/magandrez/ecstatic):
+Documentation is saved to ./doc folder. You can mount it using Docker and [ecstatic](https://github.com/magandrez/ecstatic):
 
 ```
 docker run -d --name docserver -p 80:80 -v ~/Documents/workbench/pkg-info-srv/doc:/var/html/www magandrez/ecstatic
 ```
 
-Tests
------
+### Tests
 
 Tests are written using [RSpec](https://rspec.info/). Use `rake` to run tests.
 
-Bugs
------
+### Bugs
 
 See [KNOWN_BUGS](KNOWN_BUGS.md).
