@@ -13,6 +13,8 @@ require 'json'
 #
 # For specifics on the information parser, see method documentation.
 module FileParser
+  CTRL_FILE = File.expand_path('status')
+
   # Extracts information for a given package from a control file.
   # The information is read from a static file stored in the
   # service's folder structure.
@@ -72,7 +74,7 @@ module FileParser
     # @return [ Array<String,Integer>) ] map containing package name and
     #   start line number of each package in the control file.
     def index
-      @index ||= File.open('status') do |file|
+      @index ||= File.open(CTRL_FILE) do |file|
         lazy_file = file.each_line.lazy.each_with_index.map do |line, i|
           [line, i]
         end
@@ -156,13 +158,13 @@ module FileParser
     # @return [Array<String>] containing package information
     #   line by line.
     def read_file(from_line, to_line)
-      File.readlines('status').to_a[from_line...to_line]
+      File.readlines(CTRL_FILE).to_a[from_line...to_line]
     end
 
     # Gives the number of lines on a file
     # @return [Integer] lines in a file
     def line_num
-      File.foreach('status').inject(0) { |c, _line| c + 1 }
+      File.foreach(CTRL_FILE).inject(0) { |c, _line| c + 1 }
     end
   end
 end
