@@ -1,0 +1,14 @@
+Package: foobar
+Status: All good
+Priority: Super-high
+Section: basics
+Installed-Size: 1
+Maintainer: Noone <no-one@foobar.com>
+Architecture: all
+Version: 1.0
+Depends: bar (>= 2.6), foo (<< 2.8)
+Description: There should be a fun description here
+ for which I don't know what to say.
+ But here it goes anyway.
+Original-Maintainer: Noone <no-one@foobar.com>
+Homepage: http://foobar.baz

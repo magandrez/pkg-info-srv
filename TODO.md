@@ -9,5 +9,5 @@ TODO
     * [X] Implement list all packages (i.e.: /api/packages)
   * [X] Implement dynamic reloading of source data
   * [ ] Provide a description of the service (i.e. Swagger doc). -- OPT.
-  * [ ] Test coverage -- OPT.
+  * [X] Test coverage -- OPT.
   * [ ] Write justification for the choices made.

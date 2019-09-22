@@ -70,7 +70,6 @@ or with Docker (upon request)
 $ docker run -it -p 8080:8080 spavi/pkg-info-srv:latest
 ```
 
-
 [Rake](https://github.com/ruby/rake) has been taken into use for automating
 some tasks (documentation, code analysis). For a list of automated tasks:
 
@@ -79,6 +78,7 @@ $ bundle exec rake -vT
 rake doc:yard              # Generate YARD Documentation
 rake rubocop               # Run RuboCop
 rake rubocop:auto_correct  # Auto-correct RuboCop offenses
+rake spec                  # Run RSpec code examples
 ```
 
 Documentation
@@ -94,6 +94,11 @@ Documentation is generated to ./doc folder. You can mount it using Docker and [e
 ```
 docker run -d --name docserver -p 80:80 -v ~/Documents/workbench/pkg-info-srv/doc:/var/html/www magandrez/ecstatic
 ```
+
+Tests
+-----
+
+Tests are written using [RSpec](https://rspec.info/). Use `rake` to run tests.
 
 Bugs
 -----

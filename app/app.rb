@@ -6,7 +6,7 @@ require 'json'
 # Main class where routes for service are registered.
 class App < Sinatra::Base
   set :show_exceptions, false
-  
+
   before do
     content_type :json
   end
