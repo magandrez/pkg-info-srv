@@ -133,6 +133,7 @@ Some things to keep in mind:
 rake doc:yard              # Generate YARD Documentation
 rake rubocop               # Run RuboCop
 rake rubocop:auto_correct  # Auto-correct RuboCop offenses
+rake spec                  # Run RSpec code examples
 </code></pre>
 
 <h2 id="label-Documentation">Documentation</h2>
@@ -142,7 +143,14 @@ rake rubocop:auto_correct  # Auto-correct RuboCop offenses
 <pre class="code ruby"><code class="ruby">$ bundle exec rake doc:yard # To re-generate documentation
 </code></pre>
 
-<p>Once the service is up, hit <a href="http://localhost:8080/doc">localhost:8080/doc</a> for code documentation generated with <a href="https://yardoc.org">YARD</a>.</p>
+<p>Documentation is generated to ./doc folder. You can mount it using Docker and <a href="https://github.com/magandrez/ecstatic">ecstatic</a>:</p>
+
+<pre class="code ruby"><code class="ruby">docker run -d --name docserver -p 80:80 -v ~/Documents/workbench/pkg-info-srv/doc:/var/html/www magandrez/ecstatic
+</code></pre>
+
+<h2 id="label-Tests">Tests</h2>
+
+<p>Tests are written using <a href="https://rspec.info/">RSpec</a>. Use <code>rake</code> to run tests.</p>
 
 <h2 id="label-Bugs">Bugs</h2>
 
@@ -150,7 +158,7 @@ rake rubocop:auto_correct  # Auto-correct RuboCop offenses
 </div></div>
 
       <div id="footer">
-  Generated on Sat Sep 21 18:56:19 2019 by
+  Generated on Sun Sep 22 10:23:48 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>

@@ -13,6 +13,7 @@ require 'json'
 #
 # For specifics on the information parser, see method documentation.
 module FileParser
+  # File to parse info from.
   CTRL_FILE = File.expand_path('status')
 
   # Extracts information for a given package from a control file.

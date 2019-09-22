@@ -103,6 +103,33 @@
   
 
 </div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="CTRL_FILE-constant" class="">CTRL_FILE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>File to parse info from.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -395,9 +422,6 @@
       <pre class="lines">
 
 
-52
-53
-54
 55
 56
 57
@@ -405,10 +429,13 @@
 59
 60
 61
-62</pre>
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span>
   <span class='id identifier rubyid_all_indices'>all_indices</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:last</span><span class='rparen'>)</span>
@@ -497,9 +524,6 @@
       <pre class="lines">
 
 
-26
-27
-28
 29
 30
 31
@@ -510,10 +534,13 @@
 36
 37
 38
-39</pre>
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_package'>package</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_package_index'>package_index</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pkg'>pkg</span><span class='op'>|</span> <span class='id identifier rubyid_pkg'>pkg</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_package'>package</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
@@ -585,9 +612,6 @@
       <pre class="lines">
 
 
-74
-75
-76
 77
 78
 79
@@ -598,13 +622,16 @@
 84
 85
 86
-87</pre>
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
-  <span class='ivar'>@index</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+  <span class='ivar'>@index</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#CTRL_FILE-constant" title="FileParser::CTRL_FILE (constant)">CTRL_FILE</a></span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
     <span class='id identifier rubyid_lazy_file'>lazy_file</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_each_line'>each_line</span><span class='period'>.</span><span class='id identifier rubyid_lazy'>lazy</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
       <span class='lbracket'>[</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
@@ -666,15 +693,15 @@
       <pre class="lines">
 
 
-164
-165
-166</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_line_num'>line_num</span>
-  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_foreach'>foreach</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='id identifier rubyid__line'>_line</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>+</span> <span class='int'>1</span> <span class='rbrace'>}</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_foreach'>foreach</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#CTRL_FILE-constant" title="FileParser::CTRL_FILE (constant)">CTRL_FILE</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='id identifier rubyid__line'>_line</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>+</span> <span class='int'>1</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -752,9 +779,6 @@
       <pre class="lines">
 
 
-141
-142
-143
 144
 145
 146
@@ -762,10 +786,13 @@
 148
 149
 150
-151</pre>
+151
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_dependencies'>parse_dependencies</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_dep'>dep</span> <span class='op'>=</span> <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Depends</span><span class='regexp_end'>/</span></span> <span class='op'>=~</span> <span class='id identifier rubyid_line'>line</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -854,9 +881,6 @@
       <pre class="lines">
 
 
-124
-125
-126
 127
 128
 129
@@ -864,10 +888,13 @@
 131
 132
 133
-134</pre>
+134
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_description'>parse_description</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_desc_index'>desc_index</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -956,12 +983,12 @@
       <pre class="lines">
 
 
-115
-116
-117</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_name'>parse_name</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Package</span><span class='regexp_end'>/</span></span> <span class='op'>=~</span> <span class='id identifier rubyid_line'>line</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Package: </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1059,18 +1086,18 @@
       <pre class="lines">
 
 
-100
-101
-102
 103
 104
 105
 106
 107
-108</pre>
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_text'>parse_text</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_read_file'>read_file</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span>
@@ -1156,15 +1183,15 @@
       <pre class="lines">
 
 
-158
-159
-160</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/file_parser.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_file'>read_file</span><span class='lparen'>(</span><span class='id identifier rubyid_from_line'>from_line</span><span class='comma'>,</span> <span class='id identifier rubyid_to_line'>to_line</span><span class='rparen'>)</span>
-  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_readlines'>readlines</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='lbracket'>[</span><span class='id identifier rubyid_from_line'>from_line</span><span class='op'>...</span><span class='id identifier rubyid_to_line'>to_line</span><span class='rbracket'>]</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_readlines'>readlines</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#CTRL_FILE-constant" title="FileParser::CTRL_FILE (constant)">CTRL_FILE</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='lbracket'>[</span><span class='id identifier rubyid_from_line'>from_line</span><span class='op'>...</span><span class='id identifier rubyid_to_line'>to_line</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1176,7 +1203,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Sep 21 18:56:19 2019 by
+  Generated on Sun Sep 22 10:23:48 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.4).
 </div>
