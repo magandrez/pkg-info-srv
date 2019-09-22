@@ -81,8 +81,10 @@ rake rubocop:auto_correct  # Auto-correct RuboCop offenses
 rake spec                  # Run RSpec code examples
 ```
 
-Documentation
------
+### Documentation
+
+A definition of the service using [OpenAPI specification](https://swagger.io/) is available at the base URL. Use a [dockerized swagger-editor](https://hub.docker.com/r/swaggerapi/swagger-editor/) or copy & paste the JSON output from the base URL into [editor.swagger.io](http://editor.swagger.io/) to interpret it.
+
 Use `rake` to generate the documentation.
 
 ```

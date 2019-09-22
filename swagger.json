@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "pkg-info-srv is a Proof Of Concept for a service that would provide information on GNU/Linux packages.",
+    "version": "0.4",
+    "title": "pkg-info-srv",
+    "contact": {
+      "email": "manuel@manuel.is"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost",
+  "tags": [
+    {
+      "name": "api",
+      "description": "Selected package information"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/packages/": {
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Gets all package information",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Package"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/packages/{package_name}": {
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Gets all package information",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "package_name",
+            "description": "Package to request info for.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Package"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Package": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the package without version number"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the package"
+        },
+        "depends_on": {
+          "type": "array",
+          "description": "List of packages that the package needs to do its job.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    'Moi!'
+    File.open('swagger.json')
   end
 
   get '/api/packages/:package_name' do
