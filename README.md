@@ -27,7 +27,6 @@ Some things to keep in mind:
 - Only look at the Depends field. Ignore other fields that work similarly, such as Suggests and Recommends.
 - The section Syntax of control files of the Debian Policy Manual applies to the input data.
 - A sample input file from https://gist.github.com/lauripiispanen/29735158335170c27297422a22b48caa
-- Please avoid making your submission available to potential third parties by posting it to a public repository. Using a private repository is fine, or alternatively you can submit a zip file of the repository.
 ```
 
 ### Addendum
