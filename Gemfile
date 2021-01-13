@@ -5,7 +5,7 @@ source 'https://rubygems.org' do
 
   group :development do
     gem 'pry'
-    gem 'rake', '~> 12'
+    gem 'rake', '~> 13'
     gem 'rspec', '~> 3.10'
     gem 'rubocop'
     gem 'yard', '~> 0.9'
