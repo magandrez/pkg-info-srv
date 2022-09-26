@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org' do
-  gem 'sinatra', '~> 2.2'
+  gem 'sinatra', '~> 3.0'
 
   group :development do
     gem 'pry'
